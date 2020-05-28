@@ -45,7 +45,12 @@ app.get('/users/myinfo', (req, res) => {
 
     const json = {
         userName: '김유저',
-        age: '41'
+        age: '41',
+        authList: [
+            {
+                auth: "ROLE_MEMBER"
+            }
+        ]
     }
     res.send(json);
 })

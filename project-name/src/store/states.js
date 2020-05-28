@@ -6,5 +6,10 @@ export default {
     accessToken: "",
 
     // 사용자 정보
-    myinfo: null
+    myinfo: null,
+
+    // 스토어 상태
+    codeClasses: [],
+    codeClass: null
+
 }

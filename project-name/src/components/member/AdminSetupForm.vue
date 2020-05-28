@@ -36,6 +36,7 @@ export default {
             const {userId, userName, userPw} = this
             this.$emit('submit', {userId, userName, userPw})
         }
-    }
+    },
 }
-</script>
+
+
