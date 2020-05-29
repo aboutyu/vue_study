@@ -54,6 +54,38 @@ app.get('/users/myinfo', (req, res) => {
     }
     res.send(json);
 })
+
+app.get('/codegroups', (req, res) => {
+
+    const query = req.query.username;
+
+    const json = {
+        groupName: '관리자',
+        groupCode: '41',
+        authList: [
+            {
+                auth: "ROLE_MEMBER"
+            }
+        ]
+    }
+    res.send(json);
+})
+
+app.get('/codegroups/:CODECLASS', (req, res) => {
+
+    const query = req.query.username;
+
+    const json = {
+        userName: '김유저',
+        age: '41',
+        authList: [
+            {
+                auth: "ROLE_MEMBER"
+            }
+        ]
+    }
+    res.send(json);
+})
 // /users/myinfo
 
 app.listen(3000, () => {

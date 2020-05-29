@@ -16,7 +16,21 @@ export const CodeClassRouters = [
     // 등록화면 라우트 정의
     {
         path: '/codeclass/register',
-        name: 'CodeClassRegisterPage'
+        name: 'CodeClassRegisterPage',
+        components: {
+            header: MainHeader,
+            menu: MenuBar,
+            default: CodeClassRegisterPage,
+            footer: Footer
+        },
+        beforeEnter(to, from, next) {
+            const {isAdmin} = store.getters
+            if (!isAdmin) {
+                alert('관리자 권한이 필요합니다.')
+                next({name: 'Signin'})
+            }
+            next()
+        },
     },
     // 상세보기화면 라우트 정의
     {
@@ -28,4 +42,5 @@ export const CodeClassRouters = [
         path: '/codeclass/:groupCode/modify',
         name: 'CodeClassModifyPage'
     },
+
 ]

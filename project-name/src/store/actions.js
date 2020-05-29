@@ -32,7 +32,7 @@ export default {
     },
     signinByToken({commit}, token) {
         commit(SET_ACCESS_TOKEN, token)
-        return api.get('users/myinfo')
+        return api.get('/users/myinfo')
                     .then(res => {
                         commit(SET_MY_INFO, res.data)
                     })
@@ -43,13 +43,13 @@ export default {
         alert('로그우앗 되었습니다.')
     },
     fetchCodeClassList({commit}) {
-        return api.get('codegroups')
+        return api.get('/codegroups')
                     .then(res => {
                         commit(FETCH_CODECLASS_LIST, res.data)
                     })
     },
     fetchCodeClass({commit}, classCode) {
-        return api.get('codegroups/' + classCode)
+        return api.get('/codegroups/' + classCode)
                     .then(res => {
                         commit(FETCH_CODECLASS, res.data)
                     })
