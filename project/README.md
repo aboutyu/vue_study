@@ -6,7 +6,9 @@
 
 ```
 
-npm install
+npm install 
+또는 
+npm i --legacy-peer-deps
 
 ```
 
