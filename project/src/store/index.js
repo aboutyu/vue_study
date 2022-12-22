@@ -3,7 +3,11 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     login: {
-      userId: '11'
+      userName: '테스터',
+      userId: 'munsj',
+      userMemId: '153',
+      userCell: '3셀',
+      userTeam: '요한'
     },
     cities: [
       { title: '서울', code: '02' },
@@ -79,6 +83,9 @@ export default createStore({
   actions: {
     addUsersInActions({ commit }, payload) {
       commit('addUsers', payload)
+    },
+    login({ commit }, payload) {
+      return commit('isLoginUser')
     },
     isLogin({ commit }) {
       return commit('isLoginUser')

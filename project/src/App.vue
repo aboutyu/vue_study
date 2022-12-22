@@ -1,34 +1,55 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/databinding/string">string</router-link> |
-    <router-link to="/databinding/html">html</router-link> |
-    <router-link to="/databinding/input">input</router-link> |
-    <router-link to="/databinding/select">select</router-link> |
-    <router-link to="/databinding/checkbox">checkbox</router-link> |
-    <router-link to="/databinding/radio">radio</router-link> |
-    <router-link to="/databinding/attribute">attribute</router-link> |
-    <router-link to="/databinding/list">list({{ print }})</router-link> |
-    <router-link to="/databinding/class">Class</router-link> |
-    <router-link to="/databinding/style">Style</router-link> |
-    <router-link to="/event/click">click</router-link>
-  </nav>
+  <NavigatorView />
   <router-view/>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import axios from 'axios'
+import NavigatorView from './components/NavigatorView.vue'
 
 export default {
-  components: {},
+  components: { NavigatorView },
   data() {
     return {
       selectedKey: ''
     }
   },
   setup() {},
-  created() {},
+  created() {
+    console.log('App.vue mounted !!!')
+    console.log(this.$route.query)
+
+    const form = {
+      encStr: this.$route.query.encStr,
+      ip: this.$route.query.ip,
+      sp: this.$route.query.sp
+    }
+
+    axios
+      .post('https://sogam.joyful-c.or.kr/api/decodeM', form)
+      .then(function (response) {
+        console.log(response)
+        // self.$router.push({ path: '/' })
+        self.userId = response.data.userId
+        self.userMemId = response.data.userMemId
+        self.userCell = response.data.userCell
+        self.userTeam = response.data.userTeam
+        self.userName = response.data.userName
+        console.log(self.userId)
+        console.log(self.userMemId)
+        console.log(self.userCell)
+        console.log(self.userTeam)
+        console.log(self.userName)
+
+        // store에 저장.
+        self.setStoreData1(response.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+        self.setStoreForErr()
+      })
+  },
   mounted() {},
   unmounted() {},
   methods: {},
